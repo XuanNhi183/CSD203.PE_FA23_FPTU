@@ -39,14 +39,7 @@ class LinkedList:
             self.head = new_Value
             self.size += 1
 
-    def avg(self):
-        sum =0
-        p = self.head
-        while p:
-            sum = sum + p.data
-            avg = sum / p.size
-            p = p.next
-            return avg
+
 
     def count(self):
         return self.size
@@ -57,46 +50,71 @@ class LinkedList:
         self.addLast("D", "1801", 10)
         self.addLast("E", "1803", 8)
 
+    def avg(self):
+        sum =0
+        count = 0
+        p = self.head
+        if p is None:
+            return None
+        else:
+            while p:
+                count = count + 1
+                sum = sum + p.data.GPA
+                avg = sum / count
+                p = p.next
+        return avg
 
     def f1(self):
     # === BEGIN YOUR CODE HERE
-        sum = 0
-        count = 0
-        p = self.head
-        while p:
-            sum = sum + p.data.GPA
-            count = count + 1
-        if count > 0:
-            avg = sum / count
-            return avg
-        else:
-            return 0
-
+        gpa_student = self.avg()
+        return gpa_student
     #=== END YOUR CODE
 
-    #def f2(self):
+    def f2(self,name, ID, GPA):
         # =========================================
         # === BEGIN YOUR CODE HERE
-
-
+        self.addToHead(name,ID,GPA)
+        gpa_students = self.avg()
+        return gpa_students
         # === END YOUR CODE
-
-    #def f3(self):
-
+    def delete_3First(self):
+        n = 0
+        while n <=  3:
+            if self.head is None:
+                return None
+            else:
+                current = self.head
+                self.head = current.next
+                current = None
+                n = n+1
+    def f3(self):
         # =========================================
         # === BEGIN YOUR CODE HERE
-
-
+        self.delete_3First()
+        gpa_students = self.avg()
+        return gpa_students
         # === END YOUR CODE
 
-    #def f4(self):
-
+    def f4(self):
+        current = self.head
+        count = 0
+        while current:
+            if current.data.GPA >= 9:
+                count = count + 1
+            current = current.next
+        return count
         # === BEGIN YOUR CODE HERE
         # === END YOUR CODE
-    #def f5(self):
+#nếu tra thấy id 1702 -> điểm GPA đc cộng thêm 0.5
 
+    def f5(self):
         #=== BEGIN YOUR CODE HERE
-
+        current = self.head
+        while current:
+            if current.data.ID == "1702":
+                current.data.GPA += 0.5
+                return current.data.GPA
+            current = current.next
 
 
         # === END YOUR CODE
